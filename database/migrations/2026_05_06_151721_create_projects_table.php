@@ -13,8 +13,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description');
-            $table->longText('content')->nullable(); // توضیحات بلند
-            $table->string('url')->nullable(); // لینک پروژه
+            $table->longText('content')->nullable(); 
+            $table->string('url')->nullable(); 
             $table->string('github_url')->nullable();
             $table->integer('sort_order')->default(0);
             $table->boolean('is_published')->default(true);

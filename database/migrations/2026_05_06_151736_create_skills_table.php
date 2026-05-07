@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('percentage')->default(0); // درصد تسلط (۰ تا ۱۰۰)
-            $table->string('category')->nullable(); // مثلاً Frontend, Backend
+            $table->integer('percentage')->default(0);
+            $table->string('category')->nullable(); 
             $table->integer('sort_order')->default(0);
             $table->timestamps();
         });

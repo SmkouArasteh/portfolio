@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->string('institution'); // نام دانشگاه یا موسسه
-            $table->string('degree');      // مقطع (کارشناسی، ارشد...)
-            $table->string('field_of_study'); // رشته تحصیلی
+            $table->string('institution');
+            $table->string('degree'); 
+            $table->string('field_of_study');
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->text('description')->nullable();

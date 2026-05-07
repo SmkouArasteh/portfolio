@@ -13,7 +13,17 @@ class About extends Model
 
     protected $fillable = [
         'title',
+        'full_name',
         'bio',
+        'email',
+        'phone',
+        'position',
+        'birth_date',
+        'resume',
         'image',
+    ];
+
+    protected $casts = [
+        'birth_date' => 'date',
     ];
 }
