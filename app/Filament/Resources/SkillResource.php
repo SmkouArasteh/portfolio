@@ -9,6 +9,10 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -51,16 +55,28 @@ class SkillResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Name'),
+                    ->label('Name')
+                    ->searchable(),
                 TextColumn::make('percentage')
                     ->label('Percentage'),
                 TextColumn::make('category')
-                    ->label('Category'),
+                    ->label('Category')
+                    ->searchable(),
                 TextColumn::make('sort_order')
                     ->label('Order'),
             ])
             ->defaultSort('sort_order')
-            ->reorderable('sort_order');
+            ->reorderable('sort_order')
+            ->actions([
+                EditAction::make(),
+                DeleteAction::make(),
+            ])
+            ->actionsColumnLabel('Actions')
+            ->bulkActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ])
+            ]);
     }
 
     public static function getPages(): array

@@ -57,14 +57,17 @@ class EducationResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('institution')
-                    ->label('Institution'),
+                    ->label('Institution')
+                    ->searchable(),
                 TextColumn::make('degree')
-                    ->label('Degree'),
+                    ->label('Degree')
+                    ->searchable(),
                 TextColumn::make('field_of_study')
                     ->label('Field of Study'),
                 TextColumn::make('start_date')
                     ->label('Start')
-                    ->date('Y/m/d'),
+                    ->date('Y/m/d')
+                    ->searchable(),
                 TextColumn::make('end_date')
                     ->label('End')
                     ->date('Y/m/d'),
@@ -76,7 +79,7 @@ class EducationResource extends Resource
             ->actions([
                 EditAction::make(),
                 DeleteAction::make(),
-            ])
+            ])->actionsColumnLabel('Actions')
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

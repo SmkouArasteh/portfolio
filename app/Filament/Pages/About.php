@@ -118,6 +118,36 @@ class About extends Page implements HasForms
         ];
     }
 
+     protected function getActions(): array
+    {
+        return [
+            Action::make('delete')
+                ->label('Delete Content')
+                ->icon('heroicon-o-trash')
+                ->color('danger')
+                ->requiresConfirmation()
+                ->modalHeading('Delete About Information')
+                ->modalDescription('Are you sure you want to delete all about information? This will reset the section to default.')
+                ->action(function () {
+                    $about = AboutModel::first();
+                    if ($about) {
+                        $about->delete();
+                    }
+                    AboutModel::create([
+                        'title' => 'About Me',
+                        'bio'   => '',
+                    ]);
+
+                    Notification::make()
+                        ->title('Content deleted and reset.')
+                        ->success()
+                        ->send();
+
+                    $this->redirect($this->getUrl());
+                }),
+        ];
+    }
+
     public static function shouldRegisterNavigation(): bool
     {
         return true;

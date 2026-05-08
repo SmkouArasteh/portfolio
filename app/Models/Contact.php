@@ -17,4 +17,9 @@ class Contact extends Model
     protected $casts = [
         'is_read' => 'boolean',
     ];
+
+    public function markAsRead(): void
+    {
+        $this->update(['is_read' => true]);
+    }
 }

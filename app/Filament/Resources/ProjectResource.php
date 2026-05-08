@@ -87,7 +87,8 @@ class ProjectResource extends Resource
                     ->searchable(),
                 TextColumn::make('tags.name')
                     ->label('Tags')
-                    ->badge(),
+                    ->badge()
+                    ->searchable(),
                 ToggleColumn::make('is_published')
                     ->label('Published'),
                 TextColumn::make('sort_order')
@@ -102,6 +103,7 @@ class ProjectResource extends Resource
                 EditAction::make(),
                 DeleteAction::make(),
             ])
+            ->actionsColumnLabel('Actions')
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
