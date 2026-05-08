@@ -4,12 +4,13 @@ use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ContactController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 Route::get('/sitemap.xml', function () {
     $sitemap = Sitemap::create()
         ->add(Url::create('/')->setPriority(1.0))
