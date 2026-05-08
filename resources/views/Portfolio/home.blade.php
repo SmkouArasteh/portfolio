@@ -180,7 +180,7 @@
                     <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-800"></div>
                     @foreach ($experiences as $exp)
                         <div class="relative pl-12 pb-12 last:pb-0">
-                            <div class="absolute left-2.5 top-1 w-4 h-4 rounded-full border-2 border-amber-400 bg-gray-950">
+                            <div class="absolute left-2 top-0 w-4 h-4 rounded-full border-2 border-amber-400 bg-gray-950">
                             </div>
                             <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800/50">
                                 <div class="flex flex-wrap items-center justify-between mb-2">

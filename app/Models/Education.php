@@ -20,4 +20,11 @@ class Education extends Model
         'start_date' => 'date',
         'end_date'   => 'date',
     ];
+
+    public function getDurationAttribute(): string
+    {
+        $start = $this->start_date->format('Y/m');
+        $end = $this->is_current ? 'Present' : $this->end_date?->format('Y/m');
+        return "$start - $end";
+    }
 }

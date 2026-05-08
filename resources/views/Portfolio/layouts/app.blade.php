@@ -21,6 +21,10 @@
     <meta name="twitter:description" content="@yield('twitter_description')">
     <meta name="twitter:image" content="@yield('twitter_image')">
 
+    @if ($settings && !$settings->is_indexed)
+        <meta name="robots" content="noindex, nofollow">
+    @endif
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @yield('jsonld')
