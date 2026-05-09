@@ -159,4 +159,3 @@ This project is open-sourced under the [MIT license](https://opensource.org/lice
 - [Filament](https://filamentphp.com)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Alpine.js](https://alpinejs.dev)
-- [AOS](https://michalsnik.github.io/aos/) for scroll animations
