@@ -144,7 +144,6 @@ Make sure to set `APP_ENV=production` and `APP_DEBUG=false` in your `.env`.
 - [ ] Complete SEO tools (sitemap, Open Graph)
 - [ ] Add testimonials management
 - [ ] Add frontend project pages (list and single)
-- [ ] Dark mode toggle
 
 ---
 
