@@ -1,21 +1,27 @@
 @extends('Portfolio.layouts.app')
 
-@section('title', ($about->full_name ?? 'Portfolio') . ' | ' . ($about->title ?? 'Web Developer'))
+@section('title', ($settings->site_name ?? 'Portfolio') . ' | ' . ($about->title ?? 'Web Developer'))
 
-@section('meta_description', Str::limit(strip_tags($about->bio ?? ''), 160))
+@section('meta_description', Str::limit(strip_tags($settings->meta_description ?? ''), 160))
 @section('meta_keywords', implode(',', $skills->pluck('name')->toArray()))
 
-@section('og_title', ($about->full_name ?? 'Portfolio') . ' - Portfolio')
-@section('og_description', Str::limit(strip_tags($about->bio ?? ''), 160))
-@section('og_image', $about->avatar ? route('private.image', ['path' => $about->avatar]) : asset('images/default-og.jpg'))
+@section('og_title', ($settings->meta_title ?? 'Portfolio') . ' - Portfolio')
+@section('og_description', Str::limit(strip_tags($settings->meta_description ?? ''), 160))
+@section('og_image', $settings->og_image ? route('private.image', ['path' => $settings->og_image]) :
+    asset('images/default-og.jpg'))
+@section('meta_tag_noindex')
+    @if ($settings && !$settings->is_indexed)
+        <meta name="robots" content="noindex, nofollow">
+    @endif
+@endsection
 
 @section('content')
     <!-- Hero Section -->
     <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-red-500/5"></div>
         <div class="text-center z-10 px-4">
-            @if ($about?->avatar)
-                <img src="{{ asset('storage/' . $about->avatar) }}" alt="{{ $about->full_name }}"
+            @if ($about?->image)
+                <img src="{{ asset('storage/' . $about->image) }}" alt="{{ $about->full_name }}"
                     class="w-36 h-36 rounded-full mx-auto mb-8 border-4 border-amber-400/30 object-cover shadow-2xl shadow-amber-500/20">
             @endif
             <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
@@ -241,8 +247,13 @@
 
             <!-- Success message -->
             <div x-show="success" x-cloak
-                class="bg-green-500/10 border border-green-500/30 text-green-400 rounded-xl p-4 mb-6 text-center">
+                class="relative bg-green-500/10 border border-green-500/30 text-green-400 rounded-xl p-4 mb-6 text-center">
                 Your message has been sent successfully.
+                <button @click="closeSuccess"
+                    class="absolute right-2 top-2 text-green-300 hover:text-green-100 text-lg leading-none"
+                    aria-label="Close">
+                    &times;
+                </button>
             </div>
 
             <form @submit.prevent="submit" class="space-y-4">
@@ -330,7 +341,21 @@
                     } finally {
                         this.loading = false;
                     }
+                },
+                resetForm() {
+                    this.fields = {
+                        name: '',
+                        email: '',
+                        subject: '',
+                        message: ''
+                    };
+                    this.errors = {};
+                },
+
+                closeSuccess() {
+                    this.success = false;
                 }
+
             }));
         });
 

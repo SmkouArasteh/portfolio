@@ -49,6 +49,13 @@ class Settings extends Page implements HasForms
             'logo'             => $setting->logo ?? null,
             'favicon'          => $setting->favicon ?? null,
 
+            // Social Links
+            'github'           => $setting->github ?? null,
+            'linkedin'         => $setting->linkedin ?? null,
+            'twitter'          => $setting->twitter ?? null,
+            'instagram'        => $setting->instagram ?? null,
+            'telegram'         => $setting->telegram ?? null,
+
             // SEO
             'meta_title'       => $setting->meta_title ?? null,
             'meta_description' => $setting->meta_description ?? null,
@@ -117,7 +124,31 @@ class Settings extends Page implements HasForms
                                 ->disk('public')
                                 ->acceptedFileTypes(['image/x-icon', 'image/png', 'image/svg+xml']),
                         ]),
-
+                    Tabs\Tab::make('Social Links')
+                        ->icon('heroicon-o-link')
+                        ->columnSpan(2)
+                        ->schema([
+                            TextInput::make('github')
+                                ->label('Github')
+                                ->inputMode('url')
+                                ->placeholder('https://...'),
+                            TextInput::make('linkedin')
+                                ->label('Linkedin')
+                                ->inputMode('url')
+                                ->placeholder('https://...'),
+                            TextInput::make('twitter')
+                                ->label('Twitter(x.com)')
+                                ->inputMode('url')
+                                ->placeholder('https://...'),
+                            TextInput::make('instagram')
+                                ->label('Instagram')
+                                ->inputMode('url')
+                                ->placeholder('https://...'),
+                            TextInput::make('telegram')
+                                ->label('Telegram')
+                                ->inputMode('url')
+                                ->placeholder('https://...'),
+                        ]),
                     Tabs\Tab::make('SEO')
                         ->icon('heroicon-o-magnifying-glass')
                         ->schema([
@@ -179,6 +210,11 @@ class Settings extends Page implements HasForms
             'site_description' => $data['site_description'] ?? null,
             'logo'             => $data['logo'] ?? null,
             'favicon'          => $data['favicon'] ?? null,
+            'github'           => $data['github'] ?? null,
+            'linkedin'         => $data['linkedin'] ?? null,
+            'twitter'          => $data['twitter'] ?? null,
+            'instagram'        => $data['instagram'] ?? null,
+            'telegram'         => $data['telegram'] ?? null,
             'meta_title'       => $data['meta_title'] ?? null,
             'meta_description' => $data['meta_description'] ?? null,
             'meta_keywords'    => $data['meta_keywords'] ?? null,

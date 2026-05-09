@@ -15,13 +15,25 @@ class HomeController extends Controller
     public function index()
     {
         $settings = Setting::first();
-        $socialLinks = array_filter([
-            'github'    => $settings->github,
-            'linkedin'  => $settings->linkedin,
-            'twitter'   => $settings->twitter,
-            'instagram' => $settings->instagram,
-            'telegram'  => $settings->telegram,
-        ]);
+
+        $icons = [
+            'github'    => 'fab fa-github',
+            'linkedin'  => 'fab fa-linkedin-in',
+            'twitter'   => 'fab fa-twitter',
+            'instagram' => 'fab fa-instagram',
+            'telegram'  => 'fab fa-telegram-plane',
+        ];
+
+        $socialLinks = [];
+        foreach (['github', 'linkedin', 'twitter', 'instagram', 'telegram'] as $name) {
+            if (!empty($settings->$name)) {
+                $socialLinks[] = (object)[
+                    'url'  => $settings->$name,
+                    'icon' => $icons[$name],
+                ];
+            }
+        }
+
         return view('Portfolio.home', [
             'about'       => About::first(),
             'projects'    => Project::where('is_published', true)->orderBy('sort_order')->take(6)->get(),

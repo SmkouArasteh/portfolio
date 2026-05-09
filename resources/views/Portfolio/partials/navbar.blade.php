@@ -1,7 +1,7 @@
 <nav class="fixed top-0 w-full z-50 nav-blur bg-gray-950/80 border-b border-gray-800/50 h-20" dir="ltr">
     <div class="max-w-6xl mx-auto px-4 h-full flex justify-between items-center">
         <a href="{{ url('/') }}" class="text-xl font-bold gradient-text">
-            {{ $about->full_name ?? config('app.name', 'Portfolio') }}
+            {{ $settings->site_name ?? config('app.name', 'Portfolio') }}
         </a>
         <div class="hidden md:flex gap-8 text-sm">
             <a href="#about" class="scroll-spy-link text-gray-400 hover:text-amber-400 transition">About Me</a>

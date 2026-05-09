@@ -1,7 +1,7 @@
 <footer class="border-t border-gray-800/50 py-8 px-4">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-gray-500 text-sm" dir="ltr">
-            © {{ date('Y') }} {{ $about->full_name ?? config('app.name') }}. All rights reserved.
+            © {{ date('Y') }} {{ $settings->site_name ?? config('app.name') }}. All rights reserved.
         </p>
         @if(isset($socialLinks) && count($socialLinks))
             <div class="flex gap-3">

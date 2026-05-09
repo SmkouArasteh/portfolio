@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    @if ($settings->favicon)
+        <link rel="icon" href="{{ asset('storage/' . $settings->favicon) }}" type="image/png">
+    @else
+        <link rel="icon" href="{{ asset('assets/img/logo/fav-logo1.png') }}" type="image/png">
+    @endif
+
     <title>@yield('title', config('app.name'))</title>
     <meta name="description" content="@yield('meta_description')">
     <meta name="keywords" content="@yield('meta_keywords')">
@@ -20,14 +26,9 @@
     <meta name="twitter:title" content="@yield('twitter_title')">
     <meta name="twitter:description" content="@yield('twitter_description')">
     <meta name="twitter:image" content="@yield('twitter_image')">
-
-    @if ($settings && !$settings->is_indexed)
-        <meta name="robots" content="noindex, nofollow">
-    @endif
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @yield('jsonld')
+    @yield('meta_tag_noindex')
 
     {{-- Canonical URL --}}
     <link rel="canonical" href="@yield('canonical_url', url()->current())">
